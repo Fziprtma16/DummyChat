@@ -102,7 +102,7 @@ function convertBase64ToFile(base64String, filePath,NameFile) {
   const fileName = `${NameFile}.${extension}`;
   const fileBuffer = Buffer.from(base64Data, 'base64');
   const fullFilePath = `${filePath}/${fileName}`;
-  const url = UrlMain+"chat_apps/Admin/api/upload_file.php";
+  const url = UrlMain+"Endpoint/Admin/api/upload_file.php";
   fs.writeFileSync(fullFilePath, fileBuffer);
 
 
@@ -208,7 +208,7 @@ io.emit('daftar user',sessions_users);
        console.log("Creating dimulai");
     var waktusekarang =  moment().format('YYYY-MM-DD hh:mm:ss');
 
-    axios.post(UrlMain+'chat_apps/Admin/api/save_user.php',{
+    axios.post(UrlMain+'Endpoint/Admin/api/save_user.php',{
         iduser:IdUser++,
         username:data.username,
         idsocket:socket.id,
@@ -277,7 +277,7 @@ if( to !== undefined && socket.username !== undefined){
      "rooms" : rooms
 });
 
-request.post(UrlMain+'chat_apps/Admin/api/savemsg.php').form(
+request.post(UrlMain+'Endpoint/Admin/api/savemsg.php').form(
   {
     username:socket.username,
     value:msg,
@@ -318,7 +318,7 @@ socket.on('send_img', (msg,to,caption,rooms) => {
     var nameFile = waktusekarang+"_"+socket.username;
     const targetPath = "image";
     const filePath = convertBase64ToFile(msg, targetPath,nameFile);
-    const nameFullUrl = UrlMain+"chat_apps/Admin/api/image/"+filePath;
+    const nameFullUrl = UrlMain+"Endpoint/Admin/api/image/"+filePath;
     console.log('File converted and saved to:', filePath);
 
 
@@ -337,7 +337,7 @@ socket.on('send_img', (msg,to,caption,rooms) => {
 
   );
 
-  request.post(UrlMain+'chat_apps/Admin/api/savemsg.php').form(
+  request.post(UrlMain+'Endpoint/Admin/api/savemsg.php').form(
     {
       username:socket.username,
       value:nameFullUrl,
