@@ -23,11 +23,12 @@ const io = new Server(server, {
 
 const database = {
     host: "localhost",
-    user: "n1563747_chat",
-    password: "dummy!@#" ,
-    database : "n1563747_chat"
+    user: "",
+    password: "" ,
+    database : "DummyChat"
 };
 
+const UrlMain = "https://dummytech.id/";
 var connection;
 function handleDisconnect() {
   connection = mysql.createConnection(database);
@@ -55,7 +56,7 @@ handleDisconnect();
 // Routes
 
 app.get('/', function(req, res) {
-res.send('Hello World! Ini adalah Website Express.js pertama saya');
+res.send('Dummy Chat :)');
  });
 
 
@@ -65,7 +66,7 @@ var port = process.env.PORT || 3000;
 server.listen(port);
 console.log('Listening on localhost:'+ port);
 
- const myarr = undefined;
+const myarr = undefined;
 const sessions_users = myarr || [];
 const session_active = myarr || [];
 var isInitSessions = false;
@@ -101,7 +102,7 @@ function convertBase64ToFile(base64String, filePath,NameFile) {
   const fileName = `${NameFile}.${extension}`;
   const fileBuffer = Buffer.from(base64Data, 'base64');
   const fullFilePath = `${filePath}/${fileName}`;
-  const url = "https://dummytech.id/chat_apps/Admin/api/upload_file.php";
+  const url = UrlMain+"chat_apps/Admin/api/upload_file.php";
   fs.writeFileSync(fullFilePath, fileBuffer);
 
 
@@ -207,7 +208,7 @@ io.emit('daftar user',sessions_users);
        console.log("Creating dimulai");
     var waktusekarang =  moment().format('YYYY-MM-DD hh:mm:ss');
 
-    axios.post('https://dummytech.id/chat_apps/Admin/api/save_user.php',{
+    axios.post(UrlMain+'chat_apps/Admin/api/save_user.php',{
         iduser:IdUser++,
         username:data.username,
         idsocket:socket.id,
@@ -276,7 +277,7 @@ if( to !== undefined && socket.username !== undefined){
      "rooms" : rooms
 });
 
-request.post('https://dummytech.id/chat_apps/Admin/api/savemsg.php').form(
+request.post(UrlMain+'chat_apps/Admin/api/savemsg.php').form(
   {
     username:socket.username,
     value:msg,
@@ -317,7 +318,7 @@ socket.on('send_img', (msg,to,caption,rooms) => {
     var nameFile = waktusekarang+"_"+socket.username;
     const targetPath = "image";
     const filePath = convertBase64ToFile(msg, targetPath,nameFile);
-    const nameFullUrl = "https://dummytech.id/chat_apps/Admin/api/image/"+filePath;
+    const nameFullUrl = UrlMain+"chat_apps/Admin/api/image/"+filePath;
     console.log('File converted and saved to:', filePath);
 
 
@@ -336,7 +337,7 @@ socket.on('send_img', (msg,to,caption,rooms) => {
 
   );
 
-  request.post('https://dummytech.id/chat_apps/Admin/api/savemsg.php').form(
+  request.post(UrlMain+'chat_apps/Admin/api/savemsg.php').form(
     {
       username:socket.username,
       value:nameFullUrl,
