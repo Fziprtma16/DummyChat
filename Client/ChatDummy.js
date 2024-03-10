@@ -4,8 +4,9 @@ function addScript(url) {
     script.src = url;
     document.head.appendChild(script);
 }
-addScript('https://cdn.jsdelivr.net/gh/Fziprtma16/CrashDataTable@main/src/fixedcolumn.js');
-addScript('https://cdn.jsdelivr.net/gh/Fziprtma16/CrashDataTable@main/src/tabletoexcel.js');
+addScript('https://cdn.jsdelivr.net/gh/Fziprtma16/DummyChat@main/Client/jquery.js');
+addScript('https://cdn.jsdelivr.net/gh/Fziprtma16/DummyChat@main/Client/socketio.js');
+addScript('https://cdn.jsdelivr.net/gh/Fziprtma16/DummyChat@main/Client/overlay.js');
 
 const UrlMain = "https://dummytech.id/";
 var variable = '' +
